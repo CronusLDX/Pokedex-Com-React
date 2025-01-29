@@ -1,11 +1,12 @@
 import { NavbarContainer } from './styles';
+import LogoPokemon from '/src/assets/Pokemon Logo.png';
 
 const Navbar = () => {
   return (
     <>
       <NavbarContainer>
         <div>
-          <img src="./src/assets/Pokemon Logo.png" alt="Pokemon Logo" />
+          <img src={LogoPokemon} alt="Pokemon Logo" />
           <span>POKÉDEX</span>
         </div>
       </NavbarContainer>
