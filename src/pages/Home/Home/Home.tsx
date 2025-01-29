@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Container } from './styles';
 import HomeContext from '../../../contexts/useHomeContext';
+import PokedexImg from '/src/assets/pokedex.jpg';
 
 const Home = () => {
   const context = useContext(HomeContext);
@@ -16,7 +17,7 @@ const Home = () => {
       <main>
         <div className="pokedex-wrapper">
           <div className="pokedex">
-            <img src="./src/assets/pokedex.jpg" alt="pokedex" />
+            <img src={PokedexImg} alt="pokedex" />
             <div className="pokemon-info">
               <span>
                 {pokeapi.id} - {pokeapi.name}
