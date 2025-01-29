@@ -1,50 +1,111 @@
-# React + TypeScript + Vite
+# Projeto de Estudo - React com useContext
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto foi criado como um estudo para explorar o uso do **useContext** no React, juntamente com outras tecnologias modernas do ecossistema.
 
-Currently, two official plugins are available:
+## 🛠 Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React** com **Vite** 🚀
+- **TypeScript**
+- **Axios** (para requisições HTTP)
+- **Styled-Components** (para estilização)
+- **React-Router-DOM** (para navegação entre páginas)
+- **Hooks**:
+  - `useState`
+  - `useContext`
+  - `useEffect`
+- **Git** (para versionamento do código)
 
-## Expanding the ESLint configuration
+## 📂 Estrutura do Projeto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```
+📦 meu-projeto
+ ┣ 📂 src
+ ┃ ┣ 📂 assets
+ ┃ ┣ 📂 components
+ ┃ ┣ 📂 context
+ ┃ ┣ 📂 pages
+ ┃ ┣ 📂 services
+ ┃ ┣ 📜 App.tsx
+ ┃ ┣ 📜 main.tsx
+ ┣ 📜 package.json
+ ┣ 📜 tsconfig.json
+ ┣ 📜 vite.config.ts
+ ┗ 📜 README.md
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## ⚙️ Instalação e Execução
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone o repositório:
+   ```sh
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+   ```
+2. Acesse o diretório do projeto:
+   ```sh
+   cd nome-do-repositorio
+   ```
+3. Instale as dependências:
+   ```sh
+   npm install
+   ```
+4. Execute o projeto:
+   ```sh
+   npm run dev
+   ```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## 🧑‍💻 Uso do useContext
+
+O projeto implementa o `useContext` para gerenciar estados globais. Exemplo de criação e uso do contexto:
+
+```tsx
+import { createContext, useContext, useState, ReactNode } from "react";
+
+interface AppContextType {
+  theme: string;
+  toggleTheme: () => void;
+}
+
+const AppContext = createContext<AppContextType | undefined>(undefined);
+
+export const AppProvider = ({ children }: { children: ReactNode }) => {
+  const [theme, setTheme] = useState("light");
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+  };
+
+  return (
+    <AppContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </AppContext.Provider>
+  );
+};
+
+export const useAppContext = () => {
+  const context = useContext(AppContext);
+  if (!context) throw new Error("useAppContext must be used within AppProvider");
+  return context;
+};
 ```
+
+## 🚀 Funcionalidades Implementadas
+
+✅ Consumo de API com Axios  
+✅ Estado global com useContext  
+✅ Estilização dinâmica com Styled-Components  
+✅ Navegação entre páginas com React-Router-DOM  
+
+## 📌 Melhorias Futuras
+
+- Implementar testes com **Jest** e **React Testing Library**
+- Melhorar a acessibilidade (A11Y)
+- Adicionar suporte a temas dinâmicos
+- Refatorar código para utilizar **Zustand** ou **Redux** em casos mais complexos
+
+## 📄 Licença
+
+Este projeto é apenas para fins de estudo e não possui uma licença específica.
+
+---
+
+Caso tenha sugestões ou melhorias, sinta-se à vontade para contribuir! 🚀
+
