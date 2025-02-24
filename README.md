@@ -16,7 +16,7 @@ Este é um projeto de Pokedex desenvolvido com React e TypeScript, que permite v
 - **Styled-Components** para estilização modular e reutilizável.
 - **Axios** para requisições HTTP à PokeAPI.
 - **Vite** para um ambiente de desenvolvimento rápido e moderno.
--**ContextAPI** para um melhor organizando do código e melhorando sua performace.
+- **ContextAPI** para um melhor organizando do código e melhorando sua performace.
  
 ## Como Executar o Projeto
 
