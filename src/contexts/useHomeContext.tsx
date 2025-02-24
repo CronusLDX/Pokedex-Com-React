@@ -11,17 +11,19 @@ import {
 } from '../interfaces/pokemonInterface';
 import { api } from '../api/api';
 import axios from 'axios';
+
 export const PokeContext = createContext<PokemonInterfaceContext | null>(null);
 
-export const PokeProvider: React.FC<{ children: ReactNode }> = ({
-  children,
-}) => {
+export const PokeProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [pokeApi, setPokeApi] = useState<PokemonInterface | null>(null);
   const [pokemonId, setPokemonId] = useState(1);
   const [hasError, setHasError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getPokemon = async () => {
+      setIsLoading(true);
       try {
         const response = await api.get(`pokemon/${pokemonId}`);
         const pokemonTypesResponse = await api.get(
@@ -33,7 +35,7 @@ export const PokeProvider: React.FC<{ children: ReactNode }> = ({
           name: response.data.name,
           imagem: response.data.sprites.front_default,
           raridade: pokemonTypesResponse.data.is_legendary
-            ? 'Lendario'
+            ? 'Lendário'
             : pokemonTypesResponse.data.is_mythical
             ? 'Mítico'
             : 'Comum',
@@ -41,28 +43,42 @@ export const PokeProvider: React.FC<{ children: ReactNode }> = ({
         };
 
         setPokeApi(pokemonInfo);
+        setErrorMessage(null); 
       } catch (error) {
         setHasError(true);
+        setErrorMessage('Erro ao buscar Pokémon. Tente novamente.');
         console.error('Erro ao buscar Pokémon:', error);
         if (axios.isAxiosError(error)) {
           console.error(error.response?.data);
         }
+      } finally {
+        setIsLoading(false);
       }
     };
+
     getPokemon();
   }, [pokemonId]);
 
   const nextPokemon = () => {
-    setPokemonId((id: number) => id + 1);
+    if (pokemonId < 898) { 
+      setPokemonId((id) => id + 1);
+    }
   };
 
   const previousPokemon = () => {
-    setPokemonId((id: number) => id - 1);
+    if (pokemonId > 1) { 
+      setPokemonId((id) => id - 1);
+    }
   };
 
-  if (hasError) {
-    return <p>Erro ao carregar</p>;
+  if (isLoading) {
+    return <p>Carregando...</p>; 
   }
+
+  if (hasError) {
+    return <p>{errorMessage}</p>; 
+  }
+
   return (
     <PokeContext.Provider value={{ pokeApi, nextPokemon, previousPokemon }}>
       {children}
