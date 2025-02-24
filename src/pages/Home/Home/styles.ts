@@ -8,8 +8,6 @@ export const Container = styled.section`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding-top: 20px;
-  padding-bottom: 20px;
 
   main {
     display: flex;
@@ -19,7 +17,7 @@ export const Container = styled.section`
   }
 
   .pokedex-wrapper {
-    position: relative; /* Permite que os elementos dentro fiquem sobre a imagem */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -38,9 +36,9 @@ export const Container = styled.section`
 
   .pokemon-info {
     position: absolute;
-    top: 18.5%; /* Ajuste para centralizar no espaço branco */
-    left: 12%; /* Ajuste conforme necessário */
-    width: 70%; /* Define uma largura dentro da Pokédex */
+    top: 18.5%;
+    left: 12%;
+    width: 70%;
     height: 50%;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
@@ -55,8 +53,8 @@ export const Container = styled.section`
   }
 
   .pokemon-info img {
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 180px;
   }
 
   .buttons {
@@ -79,9 +77,5 @@ export const Container = styled.section`
     background-color: rgb(0, 0, 0);
     transition: 0.3s;
     border: 2px solid rgb(255, 208, 0);
-  }
-
-  button:hover {
-    background-color: #ff9900;
   }
 `;

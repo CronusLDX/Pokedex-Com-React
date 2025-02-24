@@ -1,17 +1,7 @@
-import { useContext } from 'react';
 import { Container } from './styles';
-import HomeContext from '../../../contexts/useHomeContext';
 import PokedexImg from '/src/assets/pokedex.jpg';
 
 const Home = () => {
-  const context = useContext(HomeContext);
-
-  const { pokeapi, nextPokemon, previousPokemon } = context || {};
-
-  if (!pokeapi) {
-    return <p>Carregando Pokémon...</p>;
-  }
-
   return (
     <Container>
       <main>

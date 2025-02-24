@@ -7,7 +7,7 @@ export interface PokemonInterface {
 }
 
 export interface PokemonInterfaceContext {
-  pokeapi: PokemonInterface | null;
+  pokeApi: PokemonInterface | null;
   nextPokemon: () => void;
   previousPokemon: () => void;
 }
