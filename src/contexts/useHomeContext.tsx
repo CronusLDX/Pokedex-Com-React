@@ -23,7 +23,7 @@ export const PokeProvider: React.FC<{ children: ReactNode }> = ({
   useEffect(() => {
     const getPokemon = async () => {
       try {
-        const response = await api.get(`pokemon/ ${pokemonId}`);
+        const response = await api.get(`pokemon/${pokemonId}`);
         const pokemonTypesResponse = await api.get(
           `pokemon-species/${pokemonId}`
         );
