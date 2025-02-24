@@ -1,7 +1,12 @@
+import { usePokemon } from '../../../contexts/useHomeContext';
 import { Container } from './styles';
 import PokedexImg from '/src/assets/pokedex.jpg';
 
 const Home = () => {
+  const { pokeApi, nextPokemon, previousPokemon } = usePokemon();
+  if (!pokeApi) {
+    return <p> O conteúdo dos itens renderizados é nulo</p>;
+  }
   return (
     <Container>
       <main>
@@ -10,11 +15,11 @@ const Home = () => {
             <img src={PokedexImg} alt="pokedex" />
             <div className="pokemon-info">
               <span>
-                {pokeapi.id} - {pokeapi.name}
+                {pokeApi.id} - {pokeApi.name}
               </span>
-              <img src={pokeapi.imagem} alt={pokeapi.name} />
-              <span>Raridade: {pokeapi.raridade}</span>
-              <span>Tipo: {pokeapi.tipo.join(', ')}</span>
+              <img src={pokeApi.imagem} alt={pokeApi.name} />
+              <span>Raridade: {pokeApi.raridade}</span>
+              <span>Tipo: {pokeApi.tipo.join(', ')}</span>
             </div>
           </div>
         </div>

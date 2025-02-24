@@ -76,4 +76,6 @@ export const usePokemon = () => {
   if (!context) {
     throw new Error('Erro ao carregar o contexto, por favor verifique');
   }
+
+  return context;
 };
