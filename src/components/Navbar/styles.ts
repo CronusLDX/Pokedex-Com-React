@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const NavbarContainer = styled.nav`
-  width: 100vw;
+  width: 98.7vw;
   height: 100%;
   background-color: rgb(139, 255, 207);
   justify-content: start;
