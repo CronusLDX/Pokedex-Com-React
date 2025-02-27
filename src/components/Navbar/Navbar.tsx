@@ -7,7 +7,6 @@ const Navbar = () => {
       <NavbarContainer>
         <div>
           <img src={LogoPokemon} alt="Pokemon Logo" />
-          <span>POKÉDEX</span>
         </div>
       </NavbarContainer>
     </>

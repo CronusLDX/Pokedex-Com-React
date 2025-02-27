@@ -10,7 +10,7 @@ export const NavbarContainer = styled.nav`
   display: flex;
 
   div {
-    height: 6.5rem;
+    height: 6.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
